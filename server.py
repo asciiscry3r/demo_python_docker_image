@@ -1,5 +1,6 @@
 import argparse
 import io
+import redis
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from json import dumps
 
@@ -22,6 +23,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         try:
             file_to_open = open(self.path[1:]).read()
             self.send_response(200)
+            count = get_hit_count()
         except:
             file_to_open = "File not found"
             self.send_response(404)
@@ -47,6 +49,20 @@ def start_server(addr, port, server_class=Server, handler_class=RequestHandler):
     http_server = server_class(server_settings, handler_class)
     print(f"Starting server on {addr}:{port}")
     http_server.serve_forever()
+
+
+def get_hit_count():
+    retries = 5
+    cache = redis.Redis(host='redis', port=6379)
+    while True:
+        try:
+            return cache.incr('hits')
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
 
 def main():
     parser = argparse.ArgumentParser(description="Run a simple HTTP server.")
