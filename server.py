@@ -17,14 +17,16 @@ class RequestHandler(BaseHTTPRequestHandler):
         super().__init__(request, client_address, server_class)
 
     def do_GET(self):
-        with open("/home/max/Development/demopythonwebserver/index.html", encoding="utf-8") as f:
-            response_body = f.read()
-        response = response_body
-        self.send_response(200)
-        self.send_header("Content-type", "application/json")
-        self.send_header("Content-Length", str(len(dumps(response))))
+        if self.path == '/':
+            self.path = '/index.html'
+        try:
+            file_to_open = open(self.path[1:]).read()
+            self.send_response(200)
+        except:
+            file_to_open = "File not found"
+            self.send_response(404)
         self.end_headers()
-        self.wfile.write(str(response).encode('utf8'))
+        self.wfile.write(bytes(file_to_open, 'utf-8'))
 
     def do_POST(self):
         response = {"message": "Hello world"}
