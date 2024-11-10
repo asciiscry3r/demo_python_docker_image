@@ -3,6 +3,8 @@ import io
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from json import dumps
 
+# https://dev.to/pie_tester/building-a-basic-http-server-with-python-a-guide-for-automation-and-prototyping-4967
+
 
 class Server(HTTPServer):
     def __init__(self, address, request_handler):
