@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    image: demo_web_app-1e34eef 
     ports:
       - "8888:8080"
   redis:

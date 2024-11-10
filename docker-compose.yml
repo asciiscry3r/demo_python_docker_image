@@ -1,0 +1,7 @@
+services:
+  web:
+    image: demo_web_app 
+    ports:
+      - "8888:8080"
+  redis:
+    image: "redis:alpine"
