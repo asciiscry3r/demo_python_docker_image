@@ -20,8 +20,8 @@ _________________________________
     * Arch Gnu/Linux repo - https://repo.mksscryertower.quest/x86_64/
     * test/demo environment, this test task - https://demo.mksscryertower.quest/
     * Services:
-        * https://prometheus.mksscryertower.quest
-	* https://jenkins.mksscryertower.quest
+        - https://prometheus.mksscryertower.quest
+	- https://jenkins.mksscryertower.quest
     * DEMO WEB APPLICATION - https://github.com/asciiscry3r/demo_python_docker_image
 
 ### Images
