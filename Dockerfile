@@ -7,5 +7,3 @@ RUN pip3 install --upgrade pip --root-user-action ignore && pip3 install redis -
 COPY . .
 
 EXPOSE 8080
-
-ENTRYPOINT [ "python3", "server.py", "-l 127.0.0.1", "-p 8080" ]
