@@ -1,6 +1,6 @@
 import argparse
 import io
-import redis
+#import redis
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from json import dumps
 
@@ -23,7 +23,6 @@ class RequestHandler(BaseHTTPRequestHandler):
         try:
             file_to_open = open(self.path[1:]).read()
             self.send_response(200)
-            count = get_hit_count()
         except:
             file_to_open = "File not found"
             self.send_response(404)
@@ -37,23 +36,6 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(dumps(response))))
         self.end_headers()
         self.wfile.write(str(response).encode('utf8'))
-
-    def response_body(encoding=None):
-        encoding = io.text_encoding(encoding)
-        with open("/home/max/Development/demopythonwebserver/index.html", encoding) as f:
-            return f.read()
-
-    def get_hit_count():
-        retries = 5
-        cache = redis.Redis(host='redis', port=6379)
-        while True:
-            try:
-                return cache.incr('hits')
-            except redis.exceptions.ConnectionError as exc:
-                if retries == 0:
-                    raise exc
-                retries -= 1
-                time.sleep(0.5)
 
 
 def start_server(addr, port, server_class=Server, handler_class=RequestHandler):

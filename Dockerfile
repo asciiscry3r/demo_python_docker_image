@@ -8,4 +8,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD [ "python3", "server.py", "-l 127.0.0.1", "-p 8080" ]
+ENTRYPOINT [ "python3", "server.py", "-l 127.0.0.1", "-p 8080" ]
