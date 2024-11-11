@@ -30,7 +30,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(bytes(file_to_open, 'utf-8'))
 
     def do_POST(self):
-        response = {"message": "Hello world"}
+        response = {"message": "Hello world from POST"}
         self.send_response(200)
         self.send_header("Content-type", "application/json")
         self.send_header("Content-Length", str(len(dumps(response))))
