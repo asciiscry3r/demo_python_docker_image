@@ -43,25 +43,24 @@ class RequestHandler(BaseHTTPRequestHandler):
         with open("/home/max/Development/demopythonwebserver/index.html", encoding) as f:
             return f.read()
 
+    def get_hit_count():
+        retries = 5
+        cache = redis.Redis(host='redis', port=6379)
+        while True:
+            try:
+                return cache.incr('hits')
+            except redis.exceptions.ConnectionError as exc:
+                if retries == 0:
+                    raise exc
+                retries -= 1
+                time.sleep(0.5)
+
 
 def start_server(addr, port, server_class=Server, handler_class=RequestHandler):
     server_settings = (addr, port)
     http_server = server_class(server_settings, handler_class)
     print(f"Starting server on {addr}:{port}")
     http_server.serve_forever()
-
-
-def get_hit_count():
-    retries = 5
-    cache = redis.Redis(host='redis', port=6379)
-    while True:
-        try:
-            return cache.incr('hits')
-        except redis.exceptions.ConnectionError as exc:
-            if retries == 0:
-                raise exc
-            retries -= 1
-            time.sleep(0.5)
 
 
 def main():
