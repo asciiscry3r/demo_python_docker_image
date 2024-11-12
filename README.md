@@ -14,7 +14,7 @@ _________________________________
 _________________________________
 
     * created by terraform - example and previous version is https://github.com/asciiscry3r/myinfrastructure/tree/main/terraform
-    * configured and provisioned by ansible - example, not fixed yet, and previous version is https://github.com/asciiscry3r/myinfrastructure/tree/main/terraform
+    * configured and provisioned by ansible - example, not fixed yet, and previous version is https://github.com/asciiscry3r/myinfrastructure/tree/main/ansible
     * Site - https://mksscryertower.quest/
     * My CV - https://mksscryertower.quest/Curriculum%20Vitae%20of%20Klimenko%20Maxim%20Sergievich.html
     * Arch Gnu/Linux repo - https://repo.mksscryertower.quest/x86_64/
